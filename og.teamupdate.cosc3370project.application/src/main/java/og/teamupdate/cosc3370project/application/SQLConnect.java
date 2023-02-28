@@ -23,7 +23,7 @@ public class SQLConnect {
 			serverConnect = DriverManager.getConnection("jdbc:mariadb://teamupdateproject.ddns.net:3306/employees", Username, Passwd);
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Connection Failed.", "MariaDB Connection", 0);
+			JOptionPane.showMessageDialog(null, "Connection Failed.", "MariaDB Connection", 0); //Displays a message box with an error icon to the user
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class SQLConnect {
 			StartConnection();
 		}
 		finally {
-			serverConnect.close();
+			serverConnect.close(); //This will always close the SQL connection
 		}
 	}
 }
