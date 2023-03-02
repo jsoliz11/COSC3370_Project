@@ -7,25 +7,23 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import og.teamupdate.cosc3370project.application.SQLConnect;
+import javax.swing.JToolBar;
+import javax.swing.JList;
+import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
 
 public class GUISystem extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUISystem frame = new GUISystem();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void openGUI() {
+		try {
+			GUISystem frame = new GUISystem();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -33,20 +31,26 @@ public class GUISystem extends JFrame {
 	 */
 	public GUISystem() {
 		setTitle("Emloyee Manager");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 937, 556);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 526, 178);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(51, 58, 476, 22);
-		contentPane.add(comboBox);
-		
-		JLabel lblNewLabel = new JLabel("Employee List:");
-		lblNewLabel.setBounds(51, 33, 105, 14);
+		JLabel lblNewLabel = new JLabel("What would you like to do?");
+		lblNewLabel.setBounds(26, 31, 271, 14);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Select");
+		btnNewButton.setBounds(388, 96, 117, 29);
+		contentPane.add(btnNewButton);
+		
+		JComboBox optionSelectionBox = new JComboBox();
+		optionSelectionBox.setModel(new DefaultComboBoxModel(new String[] {"Add time worked...", "Read employee records...", "Add an employee...", "Remove an employee..."}));
+		optionSelectionBox.setToolTipText("Select an action...");
+		optionSelectionBox.setBounds(26, 57, 479, 27);
+		contentPane.add(optionSelectionBox);
 	}
 }

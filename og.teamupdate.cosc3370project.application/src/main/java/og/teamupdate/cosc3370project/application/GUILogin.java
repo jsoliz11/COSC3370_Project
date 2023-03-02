@@ -15,17 +15,22 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import og.teamupdate.cosc3370project.application.*;
+import javax.swing.JPasswordField;
+import java.awt.Component;
 
 public class GUILogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField userField;
-	private JTextField passField;
 	private String username;
 	private String password;
-	private static SQLConnect databaseConnection;
+	private static boolean connectionFlag = false;
+	//private static SQLConnect databaseConnection;
 	private static GUISystem guisystem;
+	private JPasswordField passField;
 
+	public static void setFlag() { connectionFlag = true; }
+	public static void rmFlag() { connectionFlag = false; }
 	/**
 	 * Launch the application.
 	 */
@@ -49,6 +54,7 @@ public class GUILogin extends JFrame {
 	 * Create the frame.
 	 */
 	public GUILogin() {
+		setResizable(false);
 		setTitle("System Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 193);
@@ -74,14 +80,9 @@ public class GUILogin extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		userField = new JTextField();
-		userField.setBounds(76, 47, 348, 20);
+		userField.setBounds(78, 47, 346, 20);
 		contentPane.add(userField);
 		userField.setColumns(10);
-		
-		passField = new JTextField();
-		passField.setBounds(76, 84, 348, 20);
-		contentPane.add(passField);
-		passField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Login");
 		
@@ -100,6 +101,8 @@ public class GUILogin extends JFrame {
 						SQLConnect.initConnection(username, password);
 						guisystem = new GUISystem();
 						//guisystem.setVisible(true);
+						if(connectionFlag == true)
+							guisystem.openGUI();
 						
 						
 					} catch (SQLException e1) {
@@ -111,5 +114,10 @@ public class GUILogin extends JFrame {
 		});
 		btnNewButton.setBounds(335, 120, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		passField = new JPasswordField();
+		passField.setBounds(78, 81, 346, 26);
+		contentPane.add(passField);
+		
 	}
 }
