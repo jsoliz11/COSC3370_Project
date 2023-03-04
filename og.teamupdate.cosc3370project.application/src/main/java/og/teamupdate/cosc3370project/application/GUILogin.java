@@ -17,9 +17,17 @@ import java.awt.event.ActionEvent;
 import og.teamupdate.cosc3370project.application.*;
 import javax.swing.JPasswordField;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+//Authors: Team Update: Changjiang He, David Schelanko, Joseph Garcia, Jose Soliz
 
 public class GUILogin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField userField;
 	private String username;
@@ -29,8 +37,8 @@ public class GUILogin extends JFrame {
 	private static GUISystem guisystem;
 	private JPasswordField passField;
 
-	public static void setFlag() { connectionFlag = true; }
-	public static void rmFlag() { connectionFlag = false; }
+	protected static void setFlag() { connectionFlag = true; }
+	protected static void rmFlag() { connectionFlag = false; }
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +62,18 @@ public class GUILogin extends JFrame {
 	 * Create the frame.
 	 */
 	public GUILogin() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				try {
+					SQLConnect.closeConnection();
+				}
+				catch(SQLException s) {
+					JOptionPane.showMessageDialog(null, "An error was encountered while trying to close the connection to the database.", "Connection Close Failed", 2);
+				}
+			}
+		});
+		
 		setResizable(false);
 		setTitle("System Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,7 +109,7 @@ public class GUILogin extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				username = userField.getText();
-				password = passField.getText();
+				password = String.valueOf(passField.getPassword());
 				
 				if(username.isEmpty() || password.isEmpty())
 				{
@@ -118,6 +138,7 @@ public class GUILogin extends JFrame {
 		passField = new JPasswordField();
 		passField.setBounds(78, 81, 346, 26);
 		contentPane.add(passField);
+		
 		
 	}
 }

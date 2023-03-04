@@ -13,6 +13,8 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
+//Authors: Team Update: Changjiang He, David Schelanko, Joseph Garcia, Jose Soliz
+
 public class GUISystem extends JFrame {
 
 	private JPanel contentPane;
@@ -30,7 +32,7 @@ public class GUISystem extends JFrame {
 	 * Create the frame.
 	 */
 	public GUISystem() {
-		setTitle("Emloyee Manager");
+		setTitle("Emloyee Admin Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 526, 178);
 		contentPane = new JPanel();
@@ -44,13 +46,13 @@ public class GUISystem extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Select");
-		btnNewButton.setBounds(388, 96, 117, 29);
+		btnNewButton.setBounds(369, 95, 117, 29);
 		contentPane.add(btnNewButton);
 		
 		JComboBox optionSelectionBox = new JComboBox();
 		optionSelectionBox.setModel(new DefaultComboBoxModel(new String[] {"Add time worked...", "Read employee records...", "Add an employee...", "Remove an employee..."}));
 		optionSelectionBox.setToolTipText("Select an action...");
-		optionSelectionBox.setBounds(26, 57, 479, 27);
+		optionSelectionBox.setBounds(26, 57, 460, 27);
 		contentPane.add(optionSelectionBox);
 	}
 }

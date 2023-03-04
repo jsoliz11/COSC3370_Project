@@ -4,7 +4,7 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
-//Authors: Team Update: Joseph Garcia, David Schelanko, Changjiang He, Jose Soliz
+//Authors: Team Update: Changjiang He, David Schelanko, Joseph Garcia, Jose Soliz
 
 public class SQLConnect {
 	
@@ -46,15 +46,20 @@ public class SQLConnect {
 	//Parameters: String username, String pass
 	//Returns: nothing
 	//=================================================
-	public static void initConnection(String username, String pass) throws SQLException {
+	protected static void initConnection(String username, String pass) throws SQLException {
 		setUsername(username);
 		setPass(pass);
 		
-		try{
+		//try{
 			StartConnection();
-		}
-		finally {
-			serverConnect.close(); //This should always close the SQL connection
-		}
+		//}
+		//finally {
+		//	serverConnect.close(); //This should always close the SQL connection
+		//}
+	}
+	
+	protected static void closeConnection() throws SQLException
+	{
+		serverConnect.close();
 	}
 }
