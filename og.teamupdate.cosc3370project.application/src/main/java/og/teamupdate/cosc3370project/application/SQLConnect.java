@@ -14,7 +14,7 @@ public class SQLConnect {
 	//Credentials String Holders
 	private static String Username;
 	private static String Passwd;
-	private static Connection serverConnect;
+	protected static Connection serverConnect;
 	
 	//Setters for the username and password
 	private static void setUsername(String username) { Username = username; }
@@ -60,6 +60,9 @@ public class SQLConnect {
 	
 	protected static void closeConnection() throws SQLException
 	{
-		serverConnect.close();
+		getServerConnect().close();
+	}
+	public static Connection getServerConnect() {
+		return serverConnect;
 	}
 }
