@@ -13,12 +13,21 @@ public class SQLController extends SQLConnect{
 		try {
 			Statement stmt = serverConnect.createStatement();
 			
-			String addEmployeeString = "INSERT INTO employeeTable (employeeFirstName, employeeLastName, employeeDepartment, " +
-					"employeeDesigation, employeePhone, employeeAddress, employeeEmail) VALUES ('" + employeeFname + "', '" + employeeLname + "', '" + employeeDept
-					+ "', '" + empDesig + "', '" + employeePhone + "', '" + employeeAddress + "', '" + employeeEmail + "')";
+			String addEmployeeString = "INSERT INTO employeeTable (employeeFirstName, employeeLastName, employeeDepartment, employeeDesignation, employeePhone, employeeAddress, employeeEmail)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement addEmployeeStmt = serverConnect.prepareStatement(addEmployeeString);
+			addEmployeeStmt.setString(1,  employeeFname);
+			addEmployeeStmt.setString(2,  employeeLname);
+			addEmployeeStmt.setString(3, employeeDept);
+			addEmployeeStmt.setString(4, empDesig);
+			addEmployeeStmt.setString(5, employeePhone);
+			addEmployeeStmt.setString(6, employeeAddress);
+			addEmployeeStmt.setString(7, employeeEmail);
 			
-			int queryRes = stmt.executeUpdate(addEmployeeString);
+			int queryRes = addEmployeeStmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Added " + queryRes + " to the database.", "MariaDB Connection", JOptionPane.INFORMATION_MESSAGE);
+			addEmployeeStmt.close();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Error while trying to add data entry.", "MariaDB Connection", JOptionPane.ERROR_MESSAGE);
@@ -42,8 +51,8 @@ public class SQLController extends SQLConnect{
 		
 	}
 	
-	public static void addEmployeeQuery() {
-		
+	public static void addEmployeeQuery(String f, String l, String dept, String desig, String phone, String address, String email){
+		addEmployee(f, l, dept, desig, phone, address, email);
 	}
 	
 	

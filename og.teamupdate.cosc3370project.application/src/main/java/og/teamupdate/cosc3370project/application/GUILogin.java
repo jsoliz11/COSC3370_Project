@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import og.teamupdate.cosc3370project.application.*;
+import og.teamupdate.cosc3370project.application.controllers.SQLController;
+
 import javax.swing.JPasswordField;
 import java.awt.Component;
 import java.awt.event.WindowAdapter;
@@ -33,12 +35,15 @@ public class GUILogin extends JFrame {
 	private String username;
 	private String password;
 	private static boolean connectionFlag = false;
+	private static boolean userConnectedFlag = false;
 	//private static SQLConnect databaseConnection;
 	private static GUISystem guisystem;
 	private JPasswordField passField;
 
 	protected static void setFlag() { connectionFlag = true; }
 	protected static void rmFlag() { connectionFlag = false; }
+	protected static void setUserConnectedFlag() { userConnectedFlag = true; }
+	protected static void rmUserConnectedFlag() { userConnectedFlag = false; }
 	/**
 	 * Launch the application.
 	 */
@@ -65,12 +70,15 @@ public class GUILogin extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				try {
-					SQLConnect.closeConnection();
+				if(connectionFlag) {
+					try {
+						SQLConnect.closeConnection();
+					}
+					catch(SQLException s) {
+						JOptionPane.showMessageDialog(null, "An error was encountered while trying to close the connection to the database.", "Connection Closure Failed", 2);
+					}
 				}
-				catch(SQLException s) {
-					JOptionPane.showMessageDialog(null, "An error was encountered while trying to close the connection to the database.", "Connection Close Failed", 2);
-				}
+				
 			}
 		});
 		
@@ -113,16 +121,22 @@ public class GUILogin extends JFrame {
 				
 				if(username.isEmpty() || password.isEmpty())
 				{
-					JOptionPane.showMessageDialog(null, "Username and Password cannot be left blank.", "Field Error", 2);
+					JOptionPane.showMessageDialog(null, "Username and Password cannot be left blank.", "Credential Field Error", 2);
 				}
 				else
 				{
 					try {
 						SQLConnect.initConnection(username, password);
-						guisystem = new GUISystem();
+						
 						//guisystem.setVisible(true);
-						if(connectionFlag == true)
+						if(connectionFlag == true && userConnectedFlag == true) {
+							guisystem = new GUISystem();
 							guisystem.openGUI();
+							
+							//debugging database application controller
+							SQLController.addEmployeeQuery("jed",  "raccoon",  "none", "theraccoon", "444-444-4444", "no address on file", "jedraccoon@racoons4u.com");
+						}
+							
 						
 						
 					} catch (SQLException e1) {

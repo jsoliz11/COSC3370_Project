@@ -7,11 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import og.teamupdate.cosc3370project.application.SQLConnect;
 import javax.swing.JToolBar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import og.teamupdate.cosc3370project.application.SQLConnect;
+import og.teamupdate.cosc3370project.application.GUIReadInfo;
 
 //Authors: Team Update: Changjiang He, David Schelanko, Joseph Garcia, Jose Soliz
 
@@ -32,7 +36,7 @@ public class GUISystem extends JFrame {
 	 * Create the frame.
 	 */
 	public GUISystem() {
-		setTitle("Emloyee Admin Manager");
+		setTitle("Employee Admin Manager");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 526, 178);
 		contentPane = new JPanel();
@@ -46,13 +50,26 @@ public class GUISystem extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Select");
+		
 		btnNewButton.setBounds(369, 95, 117, 29);
 		contentPane.add(btnNewButton);
 		
-		JComboBox optionSelectionBox = new JComboBox();
-		optionSelectionBox.setModel(new DefaultComboBoxModel(new String[] {"Add time worked...", "Read employee records...", "Add an employee...", "Remove an employee..."}));
+		String[] choices = {"Read employee records...", "Add an employee...", "Remove an employee...", "Fetch employee messages/grievances..."};
+		final JComboBox<String> optionSelectionBox = new JComboBox<String>(choices);
+		//optionSelectionBox.setModel(new DefaultComboBoxModel(new String[] {"Read employee records...", "Add an employee...", "Remove an employee...", "Fetch employee messages/grievances..."}));
 		optionSelectionBox.setToolTipText("Select an action...");
 		optionSelectionBox.setBounds(26, 57, 460, 27);
 		contentPane.add(optionSelectionBox);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selection = optionSelectionBox.getSelectedIndex();
+				if(selection == 0) {
+					JOptionPane.showMessageDialog(null, "Read employee records selected.", "option", 1);
+					GUIReadInfo employeeRead = new GUIReadInfo();
+					employeeRead.openRead();
+				}
+			}
+		});
 	}
 }
