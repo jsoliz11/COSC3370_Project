@@ -12,13 +12,13 @@ public class SQLConnect {
 	private static String SQLURL = "teamupdateproject.ddns.net";
 	
 	//Credentials String Holders
-	private static String Username;
-	private static String Passwd;
+	private static String Username = "admin";
+	private static String Passwd = "TeamUpdateAdmin!@";
 	protected static Connection serverConnect;
 	
 	//Setters for the username and password
-	private static void setUsername(String username) { Username = username; }
-	private static void setPass(String pass) { Passwd = pass; }
+	//private static void setUsername(String username) { Username = username; }
+	//private static void setPass(String pass) { Passwd = pass; }
 	
 
 	//=================================================
@@ -34,7 +34,7 @@ public class SQLConnect {
 			GUILogin.setFlag();
 		}
 		catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Connection Failed.", "MariaDB Connection", 0); //Displays a message box with an error icon to the user
+			JOptionPane.showMessageDialog(null, "Connection to the database failed.", "MariaDB Connection", 0); //Displays a message box with an error icon to the user
 			GUILogin.rmFlag();
 		}
 	}
@@ -46,9 +46,9 @@ public class SQLConnect {
 	//Parameters: String username, String pass
 	//Returns: nothing
 	//=================================================
-	protected static void initConnection(String username, String pass) throws SQLException {
-		setUsername(username);
-		setPass(pass);
+	protected static void initConnection() throws SQLException {
+		//setUsername(username);
+		//setPass(pass);
 		
 		//try{
 			StartConnection();

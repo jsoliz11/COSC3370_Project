@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import og.teamupdate.cosc3370project.application.*;
+import og.teamupdate.cosc3370project.application.controllers.SQLController;
 import javax.swing.JPasswordField;
 import java.awt.Component;
 import java.awt.event.WindowAdapter;
@@ -50,6 +51,7 @@ public class GUILogin extends JFrame {
 			public void run() {
 				try {
 					GUILogin frame = new GUILogin();
+					SQLConnect.initConnection();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -117,10 +119,12 @@ public class GUILogin extends JFrame {
 				}
 				else
 				{
-					try {
+					
+					SQLController.loginQuery(username, password);
+					/*try {
 						SQLConnect.initConnection(username, password);
 						guisystem = new GUISystem();
-						//guisystem.setVisible(true);
+					
 						if(connectionFlag == true)
 							guisystem.openGUI();
 						
@@ -128,7 +132,8 @@ public class GUILogin extends JFrame {
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-					}
+					}*/
+					
 				}
 			}
 		});
