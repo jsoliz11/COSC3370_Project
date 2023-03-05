@@ -1,6 +1,7 @@
 package og.teamupdate.cosc3370project.application.controllers;
 
 import og.teamupdate.cosc3370project.application.SQLConnect;
+
 import java.sql.*;
 
 import javax.swing.JOptionPane;
@@ -55,5 +56,17 @@ public class SQLController extends SQLConnect{
 		addEmployee(f, l, dept, desig, phone, address, email);
 	}
 	
+	/*public static void loginQuery(String username, String passwd) {
+		String AdminSQL = "SELECT * FROM managers, employeeTable WHERE username = ? AND password = ?";
+		try {
+			PreparedStatement adminStmt = serverConnect.prepareStatement(AdminSQL);
+			adminStmt.setString(1,  username);
+			adminStmt.setString(2,  passwd);
+			ResultSet adminResult = adminStmt.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
 	
 }

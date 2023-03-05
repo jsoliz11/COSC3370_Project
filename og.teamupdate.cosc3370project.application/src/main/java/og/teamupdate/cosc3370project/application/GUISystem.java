@@ -55,7 +55,7 @@ public class GUISystem extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		String[] choices = {"Read employee records...", "Add an employee...", "Remove an employee...", "Fetch employee messages/grievances..."};
-		final JComboBox<String> optionSelectionBox = new JComboBox<String>(choices);
+		final JComboBox optionSelectionBox = new JComboBox(choices);
 		//optionSelectionBox.setModel(new DefaultComboBoxModel(new String[] {"Read employee records...", "Add an employee...", "Remove an employee...", "Fetch employee messages/grievances..."}));
 		optionSelectionBox.setToolTipText("Select an action...");
 		optionSelectionBox.setBounds(26, 57, 460, 27);

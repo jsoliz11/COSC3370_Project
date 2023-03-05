@@ -17,6 +17,7 @@ public class GUIEditAdd extends JFrame {
 			try {
 				GUIEditAdd frame = new GUIEditAdd();
 				frame.setVisible(true);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

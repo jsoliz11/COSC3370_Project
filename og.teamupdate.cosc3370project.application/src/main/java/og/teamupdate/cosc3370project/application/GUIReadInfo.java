@@ -96,5 +96,9 @@ public class GUIReadInfo extends JFrame {
 		JLabel lblNewLabel_9 = new JLabel("Employee Physical Address: ");
 		lblNewLabel_9.setBounds(479, 268, 201, 14);
 		contentPane.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("<Designation>");
+		lblNewLabel_10.setBounds(611, 93, 328, 14);
+		contentPane.add(lblNewLabel_10);
 	}
 }

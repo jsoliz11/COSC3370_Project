@@ -17,6 +17,7 @@ public class GUIEditRm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					GUIEditRm frame = new GUIEditRm();
 					frame.setVisible(true);
 				} catch (Exception e) {

@@ -134,7 +134,7 @@ public class GUILogin extends JFrame {
 							guisystem.openGUI();
 							
 							//debugging database application controller
-							SQLController.addEmployeeQuery("jed",  "raccoon",  "none", "theraccoon", "444-444-4444", "no address on file", "jedraccoon@racoons4u.com");
+							//SQLController.addEmployeeQuery("jed",  "raccoon",  "none", "theraccoon", "444-444-4444", "no address on file", "jedraccoon@racoons4u.com");
 						}
 							
 						

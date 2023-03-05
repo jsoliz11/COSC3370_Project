@@ -80,6 +80,7 @@ public class SQLConnect {
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Credentials do not match any entries.", "MariaDB Connection", 2);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
