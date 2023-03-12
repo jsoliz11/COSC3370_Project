@@ -79,8 +79,38 @@ public class SQLController extends SQLConnect{
 		
 	}
 	
-	public static void getEmployeeInfo() {
+	public static String[] getEmployeeInfo() {
+		String data[] = null;
 		
+		try {
+            Statement stmt = serverConnect.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT employee_id, employeeFirstName, employeeMI, employeeLastName, employeeDepartment, employeeDesignation, employeePhone, employeeAddress, employeeEmail, hireDate FROM employeeTable");
+            rs.last();
+            int numRows = rs.getRow();
+            data = new String[numRows];
+            rs.beforeFirst();
+            int i = 0;
+            while (rs.next()) {
+            	String id = rs.getString("employee_id");
+                String fname = rs.getString("employeeFirstName");
+                String middleinitial = rs.getString("employeeMI");
+                String lname = rs.getString("employeeLastName");
+                String dept = rs.getString("employeeDepartment");
+                String desig = rs.getString("employeeDesignation");
+                String phone = rs.getString("employeePhone");
+                String address = rs.getString("employeeAddress");
+                String email = rs.getString("employeeEmail");
+                String hiredate = rs.getString("hireDate");
+                data[i++] = "Employee ID: " + id + "   Name: " + fname + " " + middleinitial + " " + lname;
+            }
+            
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+		
+		return data;
 	}
 	
 	public static void addEmployeeTimeCard(int employeeId) {
